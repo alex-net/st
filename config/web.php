@@ -51,6 +51,9 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 ''=>'/site/index',
+                'posts'=>'site/posts-list',
+                'post'=>'posts/index',
+                'post/save'=>'posts/save',
             ],
         ],
     ],

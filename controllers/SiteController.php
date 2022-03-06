@@ -125,4 +125,13 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    /**
+     * страница с записями постов ... 
+     */
+    public function actionPostsList()
+    {
+        $post=new \app\models\Post;
+        return $this->render('posts',['m'=>$post]);
+    }
 }
