@@ -7,7 +7,7 @@ class PostAsset extends \yii\web\AssetBundle
 	public $baseUrl='@web/js';
 	public $basePath='@webroot/js';
 	public $js=[
-		'posts.js',
+		['url'=>'posts.jsx','type'=>'text/babel'],
 	];
-	public $depends=[\yii\web\YiiAsset::class];
+	public $depends=[\yii\web\YiiAsset::class,\app\assets\ReactAsset::class];
 }
