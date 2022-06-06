@@ -108,7 +108,6 @@ class SiteController extends Controller
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
-
             return $this->refresh();
         }
         return $this->render('contact', [
@@ -131,7 +130,7 @@ class SiteController extends Controller
      */
     public function actionPostsList()
     {
-        $post=new \app\models\Post;
-        return $this->render('posts',['m'=>$post]);
+        $post = new \app\models\Post;
+        return $this->render('posts', ['m' => $post]);
     }
 }

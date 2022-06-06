@@ -8,46 +8,47 @@ use Yii;
 
 class PostsController extends \yii\rest\Controller
 {
-	public function behaviors()
-	{
-		return [
-			[
-				'class'=>\yii\filters\AccessControl::class,
-				'rules'=>[
-					['allow'=>true,'verbs'=>['post']]
-				],
-			]
-		];
-	}
-	public function afterAction($act,$res)
-	{
-		$res=parent::afterAction($act,$res);
-		return $this->asJson($res);
-	}
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => \yii\filters\AccessControl::class,
+                'rules' => [
+                    ['allow' => true, 'verbs' => ['post']]
+                ],
+            ]
+        ];
+    }
+    public function afterAction($act, $res)
+    {
+        $res = parent::afterAction($act, $res);
+        return $this->asJson($res);
+    }
 
-	/**
-	 * запрос списка статей .. 
-	 * @return [type] [description]
-	 */
-	public function actionIndex()
-	{
-		$dp=\app\models\Post::getList(Yii::$app->request->post('sortType'));
-		if (!$dp)
-			return ['ok'=>false];
-		return ['ok'=>true,'list'=>$dp->models];
-	}
+    /**
+     * запрос списка статей .. 
+     * @return [type] [description]
+     */
+    public function actionIndex()
+    {
+        $dp = \app\models\Post::getList(Yii::$app->request->post('sortType'));
+        if (!$dp) {
+            return ['ok' => false];
+        }
+        return ['ok' => true, 'list' => $dp->models];
+    }
 
-	/**
-	 * сохранение формы .. .
-	 * @return [type] [description]
-	 */
-	public function actionSave()
-	{
-		$post=new \app\models\Post;
-		return [
-			'ok'=>$post->save(Yii::$app->request->post()),
-			'errors'=>$post->errors,
-		];
-	}
+    /**
+     * сохранение формы .. .
+     * @return [type] [description]
+     */
+    public function actionSave()
+    {
+        $post = new \app\models\Post;
+        return [
+            'ok' => $post->save(Yii::$app->request->post()),
+            'errors' => $post->errors,
+        ];
+    }
 
 }
